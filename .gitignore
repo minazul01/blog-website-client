@@ -24,6 +24,11 @@ dist-ssr
 *.sw?
 
 
+# 🔐 Secret environment file
 .env
-Firebase.auth.js/
-Atthentication/
+
+# 🔥 Firebase auth config file (case-sensitive)
+Firebase.auth.js
+
+# 🔐 Authentication folder (case-sensitive)
+Authentication/
