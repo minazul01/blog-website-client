@@ -3,7 +3,7 @@ import { context } from "../../Layout/Authentication/NewProvider";
 import { Link } from "react-router-dom";
 
 const Register = () => {
-  const { signUpUser, updateUserProfile, user } = useContext(context);
+  const { signUpUser, updateUserProfile } = useContext(context);
   const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
@@ -17,7 +17,7 @@ const Register = () => {
     const password = form.password.value;
     const conPassword = form.confirmPassword.value;
     const photoURL = form.image.value;
-    console.log(photoURL);
+    
     // password validation
     if (password.length < 6) {
       setError("Password must be at least 6 characters.");

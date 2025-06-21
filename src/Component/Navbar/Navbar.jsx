@@ -7,7 +7,7 @@ import { TbLogout2, TbUsersGroup } from "react-icons/tb";
 import { CiMenuFries } from "react-icons/ci";
 import { FiUser } from "react-icons/fi";
 import { IoSettingsOutline } from "react-icons/io5";
-import logo from "../../assets/icons8-blog-60.png";
+import logo from "../../assets/tech.png";
 import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import { context } from "../../Layout/Authentication/NewProvider";
@@ -27,12 +27,12 @@ const Navbar = () => {
       <div className="flex flex-row items-center gap-1">
         <img src={logo} alt="logo" className="w-[50px] md:w-[55px] " />
         <span className="text-2xl md:text-4xl font-bold text-gray-500">
-          Bloger
+          Tech
         </span>
       </div>
 
       {/* nav links */}
-      <ul className="items-center gap-[20px] text-[1rem] text-[#424242] md:flex hidden">
+      <ul className="py-2 px-5 bg-white rounded-xl items-center gap-[40px] text-[1.2rem] text-[#424242] md:flex hidden">
         <Link to="/">
           <li className="flex items-center dark:text-[#abc2d3] hover:text-[#3B9DF8] group gap-[5px] cursor-pointer">
             Home
