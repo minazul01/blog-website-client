@@ -1,5 +1,4 @@
 
-
 // react icons
 import { IoIosArrowUp } from "react-icons/io";
 
@@ -26,7 +25,7 @@ const Navbar = () => {
       {/* logo */}
       <div className="flex flex-row items-center gap-1">
         <img src={logo} alt="logo" className="w-[50px] md:w-[55px] " />
-        <span className="text-2xl md:text-4xl font-bold text-gray-500">
+        <span className="text-2xl md:text-4xl font-bold text-pink-500">
           Tech
         </span>
       </div>
