@@ -3,7 +3,7 @@ import { context } from "../../Layout/Authentication/NewProvider";
 import { Link } from "react-router-dom";
 
 const Register = () => {
-  const { signUpUser } = useContext(context);
+  const { signUpUser, updateUserProfile, user } = useContext(context);
   const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
@@ -16,8 +16,8 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
     const conPassword = form.confirmPassword.value;
-    const image = form.image.value;
-
+    const photoURL = form.image.value;
+    console.log(photoURL);
     // password validation
     if (password.length < 6) {
       setError("Password must be at least 6 characters.");
@@ -35,9 +35,34 @@ const Register = () => {
       setError("Passwords do not match.");
     } else {
       setError("");
-    //   alert("✅ Passwords match and form submitted!");
+      //   alert("✅ Passwords match and form submitted!");
     }
-     signUpUser(email, password)
+  signUpUser(email, password)
+  .then((userCredential) => {
+    const user = userCredential.user; // ✅ assign it here
+    console.log("User created:", user);
+
+    return updateUserProfile(user, name.trim(), photoURL.trim());
+  })
+  .catch((error) => {
+    if (error.code === "auth/email-already-in-use") {
+      alert("This email is already registered. Please login instead.");
+    } else {
+      alert(error.message);
+    }
+  });
+
+    // update profile
+    // updateUserProfile(user, {
+    //   displayName: name.trim(),
+    //   photoURL: photoURL.trim(),
+    // })
+    //   .then(() => {
+    //     console.log("✅ Profile updated");
+    //   })
+    //   .catch((error) => {
+    //     console.error("❌ Error:", error.message);
+    //   });
   };
 
   return (
@@ -60,7 +85,6 @@ const Register = () => {
           <input
             type="text"
             name="nam"
-            id="name"
             placeholder="User name"
             className="border-border dark:bg-transparent dark:border-slate-600 dark:placeholder:text-slate-600 dark:text-slate-300 border rounded-md outline-none px-4 w-full mt-1 py-3 focus:border-primary transition-colors duration-300"
           />
@@ -77,7 +101,6 @@ const Register = () => {
             type="text"
             name="email"
             required
-            id="name"
             placeholder="Your Email"
             className="border-border dark:bg-transparent dark:border-slate-600 dark:placeholder:text-slate-600 dark:text-slate-300 border rounded-md outline-none px-4 w-full mt-1 py-3 focus:border-primary transition-colors duration-300"
           />
@@ -93,7 +116,6 @@ const Register = () => {
           <input
             type="text"
             name="password"
-            id="name"
             placeholder="Your Password"
             className="border-border dark:bg-transparent dark:border-slate-600 dark:placeholder:text-slate-600 dark:text-slate-300 border rounded-md outline-none px-4 w-full mt-1 py-3 focus:border-primary transition-colors duration-300"
           />
@@ -110,7 +132,6 @@ const Register = () => {
           <input
             type="text"
             name="confirmPassword"
-            id="name"
             placeholder="confirm password"
             className="border-border dark:bg-transparent dark:border-slate-600 dark:placeholder:text-slate-600 dark:text-slate-300 border rounded-md outline-none px-4 w-full mt-1 py-3 focus:border-primary transition-colors duration-300"
           />
@@ -127,7 +148,6 @@ const Register = () => {
           <input
             type="text"
             name="image"
-            id="name"
             placeholder="Your image link"
             className="border-border dark:bg-transparent dark:border-slate-600 dark:placeholder:text-slate-600 dark:text-slate-300 border rounded-md outline-none px-4 w-full mt-1 py-3 focus:border-primary transition-colors duration-300"
           />
@@ -138,10 +158,14 @@ const Register = () => {
           </button>
         </div>
       </form>
-        <div className="text-center my-5 text-2xl text-black"><span>Or</span></div>
+      <div className="text-center my-5 text-2xl text-black">
+        <span>Or</span>
+      </div>
       <div className="w-full items-center text-center my-5">
         <Link to="/login">
-          <button className="text-3xl hover:underline cursor-pointer">Login</button>
+          <button className="text-3xl hover:underline cursor-pointer">
+            Login
+          </button>
         </Link>
       </div>
     </div>

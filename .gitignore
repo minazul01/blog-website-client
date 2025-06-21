@@ -31,4 +31,4 @@ dist-ssr
 Firebase.auth.js
 
 # 🔐 Authentication folder (case-sensitive)
-Authentication/.env.auth
+Authentication/

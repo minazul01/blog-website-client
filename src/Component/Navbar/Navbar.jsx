@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+
 
 // react icons
 import { IoIosArrowUp } from "react-icons/io";
@@ -9,10 +9,13 @@ import { FiUser } from "react-icons/fi";
 import { IoSettingsOutline } from "react-icons/io5";
 import logo from "../../assets/icons8-blog-60.png";
 import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { context } from "../../Layout/Authentication/NewProvider";
 
 
 const Navbar = () => {
   
+  const {user, logOutUser} = useContext(context);
  
   const [accountMenuOpen, setAccountMenuOpen] = useState(false);
 
@@ -59,7 +62,8 @@ const Navbar = () => {
       </ul>
 
       {/* user account */}
-      <div className="flex items-center gap-[15px]">
+     <div>
+      {user ?  <div className="flex items-center gap-[15px]">
         <div
           className="flex items-center gap-[10px] cursor-pointer relative"
           onClick={() => setAccountMenuOpen(!accountMenuOpen)}
@@ -97,7 +101,7 @@ const Navbar = () => {
               View Profile
             </p>
 
-            <div className="mt-3 border-t dark:border-slate-700 border-gray-200 pt-[5px]">
+            <div onClick={logOutUser} className="mt-3 border-t dark:border-slate-700 border-gray-200 pt-[5px]">
               <p className="flex items-center gap-[5px] rounded-md p-[8px] pr-[45px] py-[3px] text-[1rem] dark:text-red-500 dark:hover:bg-red-500/20 text-red-500 hover:bg-red-50">
                 <TbLogout2 />
                 Logout
@@ -116,7 +120,8 @@ const Navbar = () => {
           onClick={() => setMobileSidebarOpen(!mobileSidebarOpen)}
           className="text-[1.8rem] dark:text-[#abc2d3] text-[#424242]c cursor-pointer md:hidden flex"
         />
-      </div>
+      </div> : <Link to="/register"><button className="text-3xl font-bold p-2 bg-lime-500 rounded-md cursor-pointer hover:bg-gray-300">Registration</button></Link>}
+     </div>
 
       {/* mobile sidebar */}
       <aside

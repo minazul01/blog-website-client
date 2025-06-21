@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import  { useContext, useState } from "react";
+import {  Link, useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
 import { toast } from "react-toastify";
@@ -13,9 +13,7 @@ const Login = () => {
 
   const [error, setError] = useState("");
 
-  const {googleUser,signInUser} = useContext(context);
-  
-
+  const { googleUser, signInUser } = useContext(context);
 
   const handleLoging = (e) => {
     e.preventDefault();
@@ -24,26 +22,26 @@ const Login = () => {
 
     const email = event.email.value;
     const password = event.password.value;
-   
 
     signInUser(email, password)
-    //   .then(() => {
-    //     toast.success("🎉 Congratulation! You are Login success...");
-    //     setError(""); // ✅ properly closed
-    //     // navigate(location.state.from);
-    //   })
-    //   .catch((error) => {
-    //     setError("Login error:", error.message);
-    //   });
+      .then(() => {
+        toast.success("🎉 Congratulation! You are Login success...");
+        setError(""); // ✅ properly closed
+          // eslint-disable-next-line no-undef
+          form.reset();
+        // navigate(location.state.from);
+
+      })
+      .catch((error) => {
+        setError("Login error:", error.message);
+      });
   };
 
 
 
-   const googleLog = () => {
-    googleUser()
-    .then(() => {
-    //   navigate(location.state.from)
-     
+  const googleLog = () => {
+    googleUser().then(() => {
+      //   navigate(location.state.from)
     });
   };
   return (
@@ -94,7 +92,7 @@ const Login = () => {
                 </div>
                 Sign in with Google
               </button>
-               <p className="text-base font-normal text-center">or</p>
+              <p className="text-base font-normal text-center">or</p>
               <Link to="/register" className="text-center">
                 <button className="text-xl font-medium hover:underline cursor-pointer">
                   Register
