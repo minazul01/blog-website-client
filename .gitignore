@@ -25,7 +25,7 @@ dist-ssr
 
 
 # 🔐 Secret environment file
-.env
+.env.auth
 
 # 🔥 Firebase auth config file (case-sensitive)
 Firebase.auth.js
