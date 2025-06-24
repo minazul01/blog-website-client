@@ -1,11 +1,12 @@
 
 import { useContext } from "react";
-import NewContext from "../../Firebase/Context/CreateContext";
+
 import { Navigate, useLocation } from "react-router-dom";
+import { context } from "../Authentication/NewProvider";
 
 
 const PrivateRoutes = ({children}) => {
-    const {user, loading} = useContext(NewContext);
+    const {user, loading} = useContext(context);
 
     const location = useLocation();
     

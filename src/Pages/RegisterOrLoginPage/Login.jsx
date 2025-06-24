@@ -1,5 +1,5 @@
-import  { useContext, useState } from "react";
-import {  Link, useLocation, useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
 import { toast } from "react-toastify";
@@ -8,10 +8,12 @@ import { context } from "../../Layout/Authentication/NewProvider";
 
 const Login = () => {
   const location = useLocation();
-  // console.log(location)
+ 
   const navigate = useNavigate();
 
+
   const [error, setError] = useState("");
+  
 
   const { googleUser, signInUser } = useContext(context);
 
@@ -26,22 +28,20 @@ const Login = () => {
     signInUser(email, password)
       .then(() => {
         toast.success("🎉 Congratulation! You are Login success...");
-        setError(""); // ✅ properly closed
-          // eslint-disable-next-line no-undef
-          form.reset();
-        // navigate(location.state.from);
-
+        setError("");
+        
+        navigate(location.state);
       })
       .catch((error) => {
-        setError("Login error:", error.message);
+        setError(`Login error: ${error.message}`);
       });
+      navigate("/")
   };
-
-
 
   const googleLog = () => {
     googleUser().then(() => {
-      //   navigate(location.state.from)
+      navigate("/")
+      navigate(location.state);
     });
   };
   return (

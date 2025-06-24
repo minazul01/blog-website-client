@@ -1,12 +1,14 @@
 import { useContext, useState } from "react";
 import { context } from "../../Layout/Authentication/NewProvider";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const { signUpUser, updateUserProfile } = useContext(context);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
+    
     e.preventDefault();
     // const formData = new FormData(e.target);
     // const intialData = Object.fromEntries(formData.entries());
@@ -51,6 +53,7 @@ const Register = () => {
       alert(error.message);
     }
   });
+  navigate("/")
 
     // update profile
     // updateUserProfile(user, {

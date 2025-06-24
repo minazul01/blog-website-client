@@ -12,9 +12,11 @@ import { useContext, useState } from "react";
 import { context } from "../../Layout/Authentication/NewProvider";
 
 
+
 const Navbar = () => {
   
   const {user, logOutUser} = useContext(context);
+ 
  
   const [accountMenuOpen, setAccountMenuOpen] = useState(false);
 
@@ -31,7 +33,7 @@ const Navbar = () => {
       </div>
 
       {/* nav links */}
-      <ul className="py-2 px-5 bg-white rounded-xl items-center gap-[40px] text-[1.2rem] text-[#424242] md:flex hidden">
+      <ul className="py-2 px-5 bg-white rounded-xl items-center gap-[40px] text-[0.6rem] md:text-[0.6rem] lg:text-[1.2rem] text-[#424242] md:flex hidden">
         <Link to="/">
           <li className="flex items-center dark:text-[#abc2d3] hover:text-[#3B9DF8] group gap-[5px] cursor-pointer">
             Home
@@ -69,7 +71,7 @@ const Navbar = () => {
         >
           <div className="relative">
             <img
-              src="https://img.freepik.com/free-photo/portrait-man-laughing_23-2148859448.jpg?t=st=1724605498~exp=1724609098~hmac=7f6fc106bae2c17b0c93af1b2e5483d9d8368f3e51284aaec7c7d50590d2bae5&w=740"
+              src={user.photoURL}
               alt="avatar"
               className="w-[35px] h-[35px] rounded-full object-cover"
             />
@@ -77,7 +79,7 @@ const Navbar = () => {
           </div>
 
           <h1 className="text-[1rem] dark:text-[#abc2d3] font-[400] text-gray-600 sm:block hidden">
-            Dhon Deo
+           {user.displayName}
           </h1>
 
           <div
@@ -94,10 +96,6 @@ const Navbar = () => {
             <p className="flex items-center gap-[5px] rounded-md p-[8px] pr-[45px] py-[3px] text-[1rem] dark:text-[#abc2d3] dark:hover:bg-slate-900/50 text-gray-600 hover:bg-gray-50">
               <IoSettingsOutline />
               Settings
-            </p>
-            <p className="flex items-center gap-[5px] rounded-md p-[8px] pr-[45px] py-[3px] text-[1rem] dark:text-[#abc2d3] dark:hover:bg-slate-900/50 text-gray-600 hover:bg-gray-50">
-              <FiUser />
-              View Profile
             </p>
 
             <div onClick={logOutUser} className="mt-3 border-t dark:border-slate-700 border-gray-200 pt-[5px]">
@@ -119,8 +117,7 @@ const Navbar = () => {
           onClick={() => setMobileSidebarOpen(!mobileSidebarOpen)}
           className="text-[1.8rem] dark:text-[#abc2d3] text-[#424242]c cursor-pointer md:hidden flex"
         />
-      </div> : <Link to="/register"><button className="text-3xl font-bold p-2 bg-lime-500 rounded-md cursor-pointer hover:bg-gray-300">Registration</button></Link>}
-     </div>
+      </div> : <div><Link to="/login"><button className="text-xl md:text-2xl lg:text-3xl font-bold p-2 bg-lime-500 rounded-md cursor-pointer hover:bg-gray-300">Login</button></Link> <Link to="/register"><button className="text-xl md:text-2xl lg:text-3xl font-bold p-2 bg-lime-500 rounded-md cursor-pointer hover:bg-gray-300">Register</button></Link></div> }
 
       {/* mobile sidebar */}
       <aside
@@ -160,6 +157,8 @@ const Navbar = () => {
 
         </ul>
       </aside>
+     </div>
+
     </nav>
   );
 };

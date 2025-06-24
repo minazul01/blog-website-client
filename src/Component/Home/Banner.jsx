@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 const Banner = () => {
   const [isHovered, setIsHovered] = useState(false);
   return (
-    <div className="w-full my-10">
+    <div className="w-full my-30">
       <div
         className="relative w-full h-[500px] cursor-pointer overflow-hidden"
         onMouseEnter={() => setIsHovered(true)}
@@ -28,13 +28,13 @@ const Banner = () => {
               x: [0, -5, 5, -5, 5, 0], // left-right wiggle
               transition: { duration: 1 },
             }}
-            className="text-2xl md:text-5xl font-bold md:leading-12"
+            className="lg:w-1/2 mx-auto text-2xl md:text-5xl font-bold leading-7 md:leading-10 lg:leading-16"
           >
             The future is{" "}
             <span className="text-red-400">Artificial Inteligence</span> trends
             and impalication.
           </motion.h1>
-          <p className="text-xs md:text-lg font-normal text-white mt-10">
+          <p className="w-fit md:w-3/4 mx-auto text-xs md:text-lg font-normal text-white mt-10 md:leading-8">
             Artificial Intelligence (AI) is rapidly transforming the future of
             technology, business, and society. While it promises improved
             efficiency and innovation, it also raises concerns about privacy,
