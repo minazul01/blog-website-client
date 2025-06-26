@@ -24,7 +24,7 @@ const CommentInput = ({postId, getComment}) => {
         });
       }
       // Clear input field
-        getComment();
+        setComment('');
         getComment();
     });
   };

@@ -10,6 +10,7 @@ import Home from "../Component/Home/Home";
 import PrivateRoutes from "../Layout/PrivataRoute/PrivateRoute";
 import AllBlog from "../Pages/AllBlog/AllBlog";
 import AllBlogDetails from "../Pages/AllBlog/AllBlogDetails";
+import Update from "../Pages/AllBlog/Update";
 
 const router = createBrowserRouter([
   {
@@ -64,7 +65,12 @@ const router = createBrowserRouter([
           return singleData;
         },
       },
-
+      // update blog post 
+      {
+        path: "/update_post/:id",
+        element: <PrivateRoutes> <Update /> </PrivateRoutes>,
+        loader: ({params}) => fetch(`http://localhost:5000/post/${params.id}`)
+      },
       // Register
       {
         path: "/register",

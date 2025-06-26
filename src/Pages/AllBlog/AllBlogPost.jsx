@@ -2,9 +2,13 @@ import { Link } from "react-router-dom";
 import { AiFillLike } from "react-icons/ai";
 import { useEffect, useState } from "react";
 import { GoComment } from "react-icons/go";
+import axios from "axios";
 
-const AllBlogPost = ({ data }) => {
+const AllBlogPost = ({ data, com }) => {
   const { _id, description, image, title } = data;
+
+  // Filter kore oi post er related comment ber kora
+  const matchedComments = com.filter((c) => c.postId === _id);
 
   const [like, setLike] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
@@ -49,14 +53,19 @@ const AllBlogPost = ({ data }) => {
                   }
                 >
                   <AiFillLike />
+                  
                 </button>
               </Link>
+              <p>{likeCount ? <span>{likeCount}</span> : ""}</p>
             </div>
-            <div>
+            <div className="flex flex-col items-center p-2">
               <Link to={`/post_detail/${_id}`}>
                 <GoComment className="text-4xl p-2 rounded-2xl cursor-pointer hover:text-blue-500" />
               </Link>
+              {/* Jodi comment thake tahole length dekhabo */}
+              {matchedComments.length > 0 && <p>{matchedComments.length}</p>}
             </div>
+
             <div>
               <Link
                 className="bg-lime-300 hover:bg-lime-500 cursor-pointer py-1 px-3 rounded-xl text-base font-bold badge-outline mt-5"
@@ -66,7 +75,8 @@ const AllBlogPost = ({ data }) => {
               </Link>
             </div>
           </div>
-          <div>{likeCount ? <p>{likeCount}</p> : ""}</div>
+          <div className="flex justify-between items-center">
+          </div>
         </div>
       </div>
     </div>

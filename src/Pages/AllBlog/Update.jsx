@@ -1,43 +1,36 @@
+
 import axios from "axios";
+import { useState } from "react";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const AddBlog = () => {
-  const handleAddBlog = (e) => {
+const Update = () => {
+    const navigate = useNavigate();
+  const data = useLoaderData();
+  const [updateData, setUpdateData] = useState(data);
+  const handleUpdatePost = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const objectData = Object.fromEntries(formData.entries());
+
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
+      title: "Do you want to save the changes?",
+      showDenyButton: true,
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, Post it!",
+      confirmButtonText: "Save",
+      denyButtonText: `Don't save`,
     }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        axios
-          .post("http://localhost:5000/post", objectData)
-          .then((res) => {
-            console.log(res.data);
-            if (res.data.acknowledged) {
-              Swal.fire({
-                title: "Posted!",
-                text: "Your file has been posted.",
-                icon: "success",
-              });
+        axios.patch(`http://localhost:5000/post/${updateData._id}`, objectData)
+        .then(res => {
+            if(res.data.modifiedCount > 0){
+                Swal.fire("Saved!", "", "success");
             }
-          })
-          .catch((err) => {
-            if (err) {
-              Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Something went wrong!",
-                footer: '<a href="#">Why do I have this issue?</a>',
-              });
-            }
-          });
+        })
+        navigate("/all_blogs");
+      } else if (result.isDenied) {
+        Swal.fire("Changes are not saved", "", "info");
       }
     });
   };
@@ -45,18 +38,19 @@ const AddBlog = () => {
   return (
     <div className="max-w-4xl mx-auto bg-white mt-10  p-5 shadow rounded-md my-20">
       <h2 className="text-2xl font-bold text-center mb-10">Create New Blog</h2>
-      <form onSubmit={handleAddBlog} className="space-y-12">
+      <form onSubmit={handleUpdatePost} className="space-y-12">
         {/* Title Input */}
         <input
           type="text"
           name="title"
+          defaultValue={updateData.title}
           placeholder="Enter Title"
           className="w-full border p-2 rounded"
           required
         />
 
         {/* Category Select */}
-        <select className="w-full border p-2 rounded" name="category" required>
+        <select className="w-full border p-2 rounded" name="category" defaultValue={updateData.category} required>
           <option value="">Select Category</option>
           <option value="Programming">Programming</option>
           <option value="Technology">Technology</option>
@@ -69,6 +63,7 @@ const AddBlog = () => {
           placeholder="Enter Description"
           className="w-full border p-2 rounded"
           name="description"
+          defaultValue={updateData.description}
           required
         ></textarea>
 
@@ -78,6 +73,7 @@ const AddBlog = () => {
           placeholder="Enter Image URL"
           className="w-full border p-2 rounded"
           name="image"
+          defaultValue={updateData.image}
           required
         />
 
@@ -93,4 +89,4 @@ const AddBlog = () => {
   );
 };
 
-export default AddBlog;
+export default Update;
