@@ -11,7 +11,6 @@ import PrivateRoutes from "../Layout/PrivataRoute/PrivateRoute";
 import AllBlog from "../Pages/AllBlog/AllBlog";
 import AllBlogDetails from "../Pages/AllBlog/AllBlogDetails";
 
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -49,18 +48,23 @@ const router = createBrowserRouter([
       },
       // post detail
       {
-       path: "/post_detail/:id",
-       element: <PrivateRoutes> <AllBlogDetails /> </PrivateRoutes>,
-       loader: async ({params}) => {
-        const res = await fetch("http://localhost:5000/post");
-        const data = await res.json();
-        const singleData = data.find(post => post._id === params.id);
-        return singleData;
-       }
-       
+        path: "/post_detail/:id",
+        element: (
+          <PrivateRoutes>
+            {" "}
+            <AllBlogDetails />{" "}
+          </PrivateRoutes>
+        ),
+        loader: async ({ params }) => {
+          // post loader
+          const res = await fetch("http://localhost:5000/post");
+          const data = await res.json();
+          const singleData = data.find((post) => post._id === params.id);
+
+          return singleData;
+        },
       },
-     
-     
+
       // Register
       {
         path: "/register",

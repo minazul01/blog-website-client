@@ -1,13 +1,30 @@
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useParams } from "react-router-dom";
 import { AiFillLike } from "react-icons/ai";
 import { IoMdHeart } from "react-icons/io";
 import { GoComment } from "react-icons/go";
 import { PiShareFatThin } from "react-icons/pi";
 import { useEffect, useState } from "react";
 import CommentInput from "./CommentInput";
+import axios from "axios";
 
 const AllBlogDetails = () => {
-  const data = useLoaderData();
+  const { id } = useParams();
+  const singleData = useLoaderData();
+  const [data, setData] = useState(singleData);
+  const [commentData, setCommentData] = useState([]);
+
+  const getComment = () => {
+    axios
+      .get(`http://localhost:5000/comment/${id}`)
+      .then((res) => {
+        setCommentData(res.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    getComment();
+  }, [id]);
 
   const { _id, category, description, image, title } = data;
 
@@ -36,9 +53,7 @@ const AllBlogDetails = () => {
       <div className="card bg-base-100 lg:w-[800px] h-fit shadow-sm  rounded-2xl">
         <div className="card-body">
           <div className="flex justify-between">
-            <h1 className="text-4xl font-bold  mb-5 px-5" px5>
-              {category}
-            </h1>
+            <h1 className="text-4xl font-bold  mb-5 px-5">{category}</h1>
             <Link>
               <button className="text-3xl rounded-2xl cursor-pointer text-gray-400 ">
                 <IoMdHeart />
@@ -81,7 +96,27 @@ const AllBlogDetails = () => {
             </Link>
           </div>
           <div>
-            <CommentInput />
+            <div>
+              {commentData.map(({ _id, comment, name, image }) => (
+                <div key={_id} className="my-3">
+                  <div className="flex flex-row items-start gap-2">
+                    <div>
+                      <img
+                        className="w-[35px] h-[35px] rounded-full object-cover"
+                        src={image}
+                        alt="user"
+                      />
+                    </div>
+                    <div className="p-2 bg-gray-300 rounded-md">
+                      <h5 className="text-xl font-bold">{name}</h5>
+                      <p className="text-lg font-normal">{comment}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <CommentInput postId={_id} getComment={getComment} />
+            
           </div>
         </div>
       </div>
