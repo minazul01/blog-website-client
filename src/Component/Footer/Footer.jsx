@@ -4,6 +4,7 @@
 // react icons
 import {CgFacebook} from "react-icons/cg";
 import {BsInstagram, BsLinkedin, BsTwitter} from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
     return (
@@ -11,12 +12,12 @@ const Footer = () => {
             <div className="flex justify-center gap-[30px] flex-wrap w-full sm:px-32">
                 <div
                     className="flex justify-center sm:justify-between gap-[30px] w-full flex-wrap">
-                    <p className="text-[0.9rem] dark:text-[#abc2d3] text-[#424242] hover:text-[#3B9DF8] cursor-pointer transition-all duration-200">Service</p>
-                    <p className="text-[0.9rem] dark:text-[#abc2d3] text-[#424242] hover:text-[#3B9DF8] cursor-pointer transition-all duration-200">Features</p>
-                    <p className="text-[0.9rem] dark:text-[#abc2d3] text-[#424242] hover:text-[#3B9DF8] cursor-pointer transition-all duration-200">Our
-                        Team</p>
+                    <Link to="/all_blogs"><p className="text-[0.9rem] dark:text-[#abc2d3] text-[#424242] hover:text-[#3B9DF8] cursor-pointer transition-all duration-200">All Blogs</p></Link>
+                    <Link to="/add_blogs"><p className="text-[0.9rem] dark:text-[#abc2d3] text-[#424242] hover:text-[#3B9DF8] cursor-pointer transition-all duration-200">Add Blogs</p></Link>
+                    <Link to="/favorite"><p className="text-[0.9rem] dark:text-[#abc2d3] text-[#424242] hover:text-[#3B9DF8] cursor-pointer transition-all duration-200">
+                        Wishlist</p></Link>
                     <p className="text-[0.9rem] dark:text-[#abc2d3] text-[#424242] hover:text-[#3B9DF8] cursor-pointer transition-all duration-200">Portfolio</p>
-                    <p className="text-[0.9rem] dark:text-[#abc2d3] text-[#424242] hover:text-[#3B9DF8] cursor-pointer transition-all duration-200">Blog</p>
+                    <Link to="/features_blogs"><p className="text-[0.9rem] dark:text-[#abc2d3] text-[#424242] hover:text-[#3B9DF8] cursor-pointer transition-all duration-200">Features</p></Link>
                     <p className="text-[0.9rem] dark:text-[#abc2d3] text-[#424242] hover:text-[#3B9DF8] cursor-pointer transition-all duration-200">Contact
                         Us</p>
                 </div>
@@ -39,8 +40,8 @@ const Footer = () => {
 
                 <div
                     className="border-t dark:border-slate-700 border-gray-200 pt-[20px] flex items-center w-full flex-wrap gap-[20px] justify-center">
-                    <p className="text-[0.8rem] dark:text-slate-500 sm:text-[0.9rem] text-gray-600">© 2024 ZenUI
-                        Library. All Rights
+                    <p className="text-[0.8rem] dark:text-slate-500 sm:text-[0.9rem] text-gray-600">© 2024 Tech
+                        Journey. All Rights
                         Reserved. </p>
                 </div>
             </div>

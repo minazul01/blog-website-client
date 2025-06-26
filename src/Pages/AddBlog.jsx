@@ -19,7 +19,7 @@ const AddBlog = () => {
         axios
           .post("http://localhost:5000/post", objectData)
           .then((res) => {
-            console.log(res.data);
+            
             if (res.data.acknowledged) {
               Swal.fire({
                 title: "Posted!",

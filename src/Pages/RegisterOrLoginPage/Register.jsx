@@ -42,7 +42,7 @@ const Register = () => {
   signUpUser(email, password)
   .then((userCredential) => {
     const user = userCredential.user; // ✅ assign it here
-    console.log("User created:", user);
+   
 
     return updateUserProfile(user, name.trim(), photoURL.trim());
   })
@@ -55,17 +55,6 @@ const Register = () => {
   });
   navigate("/")
 
-    // update profile
-    // updateUserProfile(user, {
-    //   displayName: name.trim(),
-    //   photoURL: photoURL.trim(),
-    // })
-    //   .then(() => {
-    //     console.log("✅ Profile updated");
-    //   })
-    //   .catch((error) => {
-    //     console.error("❌ Error:", error.message);
-    //   });
   };
 
   return (

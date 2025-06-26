@@ -1,55 +1,23 @@
 import { Link, useLoaderData, useNavigate, useParams } from "react-router-dom";
 import { AiFillLike } from "react-icons/ai";
-import { IoMdHeart } from "react-icons/io";
+import { BsThreeDots } from "react-icons/bs";
 import { GoComment } from "react-icons/go";
 import { PiShareFatThin } from "react-icons/pi";
 import { useEffect, useState } from "react";
-import { BsThreeDots } from "react-icons/bs";
-import CommentInput from "./CommentInput";
+
 import axios from "axios";
 import Swal from "sweetalert2";
+import CommentInput from "./AllBlog/CommentInput";
 
 const AllBlogDetails = () => {
-  const [favourite, setFavourite] = useState([]);
+  
   const { id } = useParams();
   const singleData = useLoaderData();
   const [data, setData] = useState(singleData);
   const [commentData, setCommentData] = useState([]);
-  const { _id, category, description, image, title } = data;
   const [click, setClick] = useState(false);
 
-  // favourite post added
-  const handleFavourite = (data) => {
-    const exists = favourite.find((fav) => fav._id === data._id);
-    if (exists) {
-      Swal.fire("Already in Favourite!");
-    } else {
-      setFavourite([...favourite, data]);
-      Swal.fire("Added to Favourite!");
-    }
-  };
-
-  const exists = favourite.find((fav) => fav._id === data._id);
-
-  const dataWithoutId = favourite.map(({ _id, ...rest }) => rest);
-
-  useEffect(() => {
-    if (favourite.length > 0) {
-      const dataWithoutId = favourite.map(({ _id, ...rest }) => rest);
-
-      axios
-        .post("http://localhost:5000/favorite", dataWithoutId)
-        .then((res) => {
-          if (res.acknowledged && res.insertedCount > 0) {
-            Swal.fire({
-              title: "Favorite added!",
-              text: "Your file has been Added.",
-              icon: "success",
-            });
-          }
-        });
-    }
-  }, []);
+  const { _id, category, description, image, title } = data;
 
   // navigate delete to navigate
   const navigate = useNavigate();
@@ -110,15 +78,16 @@ const AllBlogDetails = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:5000/post/${id}`)
+          .delete(`http://localhost:5000/favorite/${id}`)
           .then((res) => {
-            if (res.data.acknowledged) {
+            
+            if (res.data.acknowledged == true) {
               Swal.fire({
                 title: "Delete!",
                 text: "Your file has been Delete.",
                 icon: "success",
               });
-              navigate("/all_blogs");
+              navigate("/features_blogs");
             }
           })
           .catch((err) => {
@@ -140,7 +109,7 @@ const AllBlogDetails = () => {
         <div className="card-body">
           <div className="flex justify-between">
             <div className="w-full flex flex-row justify-between items-center">
-              <h2 className="text-4xl font-bold  mb-5 px-5">{category}</h2>
+              <h2 className=" text-4xl font-bold  mb-5 px-5">{category}</h2>
               <div className="relative inline-block">
                 <h2
                   className="text-3xl font-bold pr-5 cursor-pointer"
@@ -151,12 +120,6 @@ const AllBlogDetails = () => {
 
                 {click && (
                   <div className="absolute right-0 mt-2 bg-gray-200 border shadow p-2 rounded space-y-2 z-10">
-                    <Link
-                      to={`/update_post/${_id}`}
-                      className="block w-full text-lg hover:text-blue-500"
-                    >
-                      Update
-                    </Link>
                     <button
                       onClick={() => handleDelete(_id)}
                       className="block w-full text-lg hover:text-red-500"
@@ -167,18 +130,6 @@ const AllBlogDetails = () => {
                 )}
               </div>
             </div>
-            <Link>
-              <button
-                onClick={() => handleFavourite(data)}
-                className={`text-3xl rounded-2xl cursor-pointer ${
-                  exists
-                    ? "text-red-500 hover:text-gray-200 transition"
-                    : "text-gray-400 hover:text-red-500 transition"
-                }`}
-              >
-                <IoMdHeart />
-              </button>
-            </Link>
           </div>
           <h2 className="card-title px-5 font-bold">{title}</h2>
           <p className="px-5">{description}</p>

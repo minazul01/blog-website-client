@@ -11,6 +11,7 @@ import PrivateRoutes from "../Layout/PrivataRoute/PrivateRoute";
 import AllBlog from "../Pages/AllBlog/AllBlog";
 import AllBlogDetails from "../Pages/AllBlog/AllBlogDetails";
 import Update from "../Pages/AllBlog/Update";
+import FavoriteDetails from "../Pages/FavoriteDetails";
 
 const router = createBrowserRouter([
   {
@@ -34,9 +35,22 @@ const router = createBrowserRouter([
           </PrivateRoutes>
         ),
       },
+      // features blog post
       {
         path: "/features_blogs",
         element: <FeaturesBlog />,
+        loader: () => fetch("http://localhost:5000/favorite")
+      },
+      {
+        path: "/favorite/:id",
+        element: <FavoriteDetails />,
+        loader: async({params}) => {
+          const res = await fetch("http://localhost:5000/favorite");
+          const data = await res.json();
+          const singleData = data.find((post) => post._id === params.id);
+          
+          return singleData
+        }
       },
       {
         path: "/wishlist",
@@ -61,8 +75,7 @@ const router = createBrowserRouter([
           const res = await fetch("http://localhost:5000/post");
           const data = await res.json();
           const singleData = data.find((post) => post._id === params.id);
-
-          return singleData;
+          return singleData
         },
       },
       // update blog post 

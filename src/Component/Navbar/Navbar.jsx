@@ -7,7 +7,7 @@ import { CiMenuFries } from "react-icons/ci";
 import { FiUser } from "react-icons/fi";
 import { IoSettingsOutline } from "react-icons/io5";
 import logo from "../../assets/tech.png";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useContext, useState } from "react";
 import { context } from "../../Layout/Authentication/NewProvider";
 
@@ -34,32 +34,33 @@ const Navbar = () => {
 
       {/* nav links */}
       <ul className="py-2 px-5 bg-white rounded-xl items-center gap-[40px] text-[0.6rem] md:text-[0.6rem] lg:text-[1.2rem] text-[#424242] md:flex hidden">
-        <Link to="/">
+        <NavLink to="/">
           <li className="flex items-center dark:text-[#abc2d3] hover:text-[#3B9DF8] group gap-[5px] cursor-pointer">
             Home
           </li>
-        </Link>
+        </NavLink>
 
-        <Link to="/all_blogs">
+        <NavLink to="/all_blogs">
           <li className="flex items-center dark:text-[#abc2d3] hover:text-[#3B9DF8] group gap-[5px] cursor-pointer">
             All-Blog
           </li>
-        </Link>
-        <Link to="/add_blogs">
+        </NavLink>
+        <NavLink to="/add_blogs">
           <li className="flex items-center dark:text-[#abc2d3] hover:text-[#3B9DF8] group gap-[5px] cursor-pointer">
             Add-Blog
           </li>
-        </Link>
-        <Link to="/features_blogs">
-          <li className="flex items-center dark:text-[#abc2d3] hover:text-[#3B9DF8] group gap-[5px] cursor-pointer">
-            Features-Blog
-          </li>
-        </Link>
-        <Link to="/wishlist">
+        </NavLink>
+        <NavLink to="/features_blogs">
           <li className="flex items-center dark:text-[#abc2d3] hover:text-[#3B9DF8] group gap-[5px] cursor-pointer">
             Wishlist
           </li>
-        </Link>
+        </NavLink>
+        <NavLink to="/wishlist">
+          <li className="flex items-center dark:text-[#abc2d3] hover:text-[#3B9DF8] group gap-[5px] cursor-pointer">
+           Features_Blogs
+          </li>
+        </NavLink>
+       
       </ul>
 
       {/* user account */}
@@ -128,31 +129,31 @@ const Navbar = () => {
         } md:hidden bg-white p-4 text-center absolute dark:bg-slate-700 top-[55px] right-0 sm:w-[300px] w-full rounded-md transition-all duration-300`}
       >
         <ul className="items-start gap-[20px] text-[1rem] text-gray-600 flex flex-col">
-          <Link to="/">
+          <NavLink to="/">
             <li className="hover:text-[#3B9DF8] group dark:text-[#abc2d3] transition-all duration-500 cursor-pointer capitalize flex items-center gap-[10px]">
               Home
             </li>
-          </Link>
-          <Link to="/all_blogs">
+          </NavLink>
+          <NavLink to="/all_blogs">
             <li className="hover:text-[#3B9DF8] group dark:text-[#abc2d3] transition-all duration-500 cursor-pointer capitalize flex items-center gap-[10px]">
               All-Blog
             </li>
-          </Link>
-          <Link to="/add_blogs">
+          </NavLink>
+          <NavLink to="/add_blogs">
             <li className="hover:text-[#3B9DF8] group dark:text-[#abc2d3] transition-all duration-500 cursor-pointer capitalize flex items-center gap-[10px]">
               Add-Blog
             </li>
-          </Link>
-          <Link to="/features_blogs">
-            <li className="hover:text-[#3B9DF8] group dark:text-[#abc2d3] transition-all duration-500 cursor-pointer capitalize flex items-center gap-[10px]">
-              Feature-Blog
-            </li>
-          </Link>
-          <Link to="/wishlist">
+          </NavLink>
+          <NavLink to="/features_blogs">
             <li className="hover:text-[#3B9DF8] group dark:text-[#abc2d3] transition-all duration-500 cursor-pointer capitalize flex items-center gap-[10px]">
               Wishlist
             </li>
-          </Link>
+          </NavLink>
+          <NavLink to="/wishlist">
+            <li className="hover:text-[#3B9DF8] group dark:text-[#abc2d3] transition-all duration-500 cursor-pointer capitalize flex items-center gap-[10px]">
+              Wishlist
+            </li>
+          </NavLink>
 
 
         </ul>

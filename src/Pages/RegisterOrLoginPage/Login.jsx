@@ -8,12 +8,10 @@ import { context } from "../../Layout/Authentication/NewProvider";
 
 const Login = () => {
   const location = useLocation();
- 
+
   const navigate = useNavigate();
 
-
   const [error, setError] = useState("");
-  
 
   const { googleUser, signInUser } = useContext(context);
 
@@ -29,18 +27,20 @@ const Login = () => {
       .then(() => {
         toast.success("🎉 Congratulation! You are Login success...");
         setError("");
-        
+        axios
+          .post("http://localhost:5000/jwt", user, { withCredentials: true })
+          .then((res) => res.data);
         navigate(location.state);
       })
       .catch((error) => {
         setError(`Login error: ${error.message}`);
       });
-      navigate("/")
+    navigate("/");
   };
 
   const googleLog = () => {
     googleUser().then(() => {
-      navigate("/")
+      navigate("/");
       navigate(location.state);
     });
   };
