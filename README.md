@@ -1,12 +1,15 @@
-# React + Vite
+Project Name: Tech 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+project use technology: html, css, javascript, reactJs, tailwind css, daisyui and other dependency.
 
-Currently, two official plugins are available:
+project description: The Tech Blog is a modern, responsive blogging platform built with the MERN stack (MongoDB, Express, React, Node.js). It allows users to explore the latest technology-related blogs, like posts, comment on articles, and add blogs to their favorites. The project emphasizes clean UI, interactive user experience, and secure backend API integrations.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This is a MERN stack project.
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+Live Site Link : https://blog-a11cc.web.app/
+
+Github Repository ( server ) : https://github.com/minazul01/blog-website-server
+
+Github Repository ( client  ) : https://github.com/minazul01/blog-website-client

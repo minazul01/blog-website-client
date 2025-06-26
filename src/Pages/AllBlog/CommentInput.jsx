@@ -12,7 +12,7 @@ const CommentInput = ({postId, getComment}) => {
     e.preventDefault();
     let commentInput = e.target.comment.value;
     setComment(commentInput);
-    axios.post("http://localhost:5000/comment", { comment: comment, postId: postId, name: user.displayName, image: user.photoURL }).then((res) => {
+    axios.post("https://blog-website-server-ochre.vercel.app/comment", { comment: comment, postId: postId, name: user.displayName, image: user.photoURL }).then((res) => {
       if (res.data.acknowledged) {
        
         Swal.fire({

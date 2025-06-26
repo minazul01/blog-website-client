@@ -38,7 +38,7 @@ const AllBlogDetails = () => {
       const dataWithoutId = favourite.map(({ _id, ...rest }) => rest);
 
       axios
-        .post("http://localhost:5000/favorite", dataWithoutId)
+        .post("https://blog-website-server-ochre.vercel.app/favorite", dataWithoutId)
         .then((res) => {
           if (res.acknowledged && res.insertedCount > 0) {
             Swal.fire({
@@ -57,7 +57,7 @@ const AllBlogDetails = () => {
   // comment real time add on the blog post
   const getComment = () => {
     axios
-      .get(`http://localhost:5000/comment/${id}`)
+      .get(`https://blog-website-server-ochre.vercel.app/comment/${id}`)
       .then((res) => {
         setCommentData(res.data);
       })
@@ -110,7 +110,7 @@ const AllBlogDetails = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:5000/post/${id}`)
+          .delete(`https://blog-website-server-ochre.vercel.app/post/${id}`)
           .then((res) => {
             if (res.data.acknowledged) {
               Swal.fire({

@@ -6,7 +6,7 @@ import SomePostBlog from "./SomePostBlog";
 const SomePost = () => {
     const [data, setData] = useState([]);
     useEffect(() => {
-        axios.get("http://localhost:5000/post")
+        axios.get("https://blog-website-server-ochre.vercel.app/post")
         .then(res => {
            setData(res.data.slice(15,21));
         })

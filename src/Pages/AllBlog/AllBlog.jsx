@@ -7,7 +7,7 @@ import axios from "axios";
 const AllBlog = () => {
     const [post, setData] = useState([]);
     useEffect(() => {
-        fetch("http://localhost:5000/post")
+        fetch("https://blog-website-server-ochre.vercel.app/post")
         .then(res => res.json())
         .then(data => setData(data))
     }, []);
@@ -19,7 +19,7 @@ const AllBlog = () => {
 
      const [comment, setComment] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:5000/comment").then((res) => {
+    axios.get("https://blog-website-server-ochre.vercel.app/comment").then((res) => {
       setComment(res.data);
     });
   }, []);

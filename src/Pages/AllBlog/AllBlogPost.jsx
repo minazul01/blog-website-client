@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { AiFillLike } from "react-icons/ai";
 import { useEffect, useState } from "react";
 import { GoComment } from "react-icons/go";
-import axios from "axios";
 
 const AllBlogPost = ({ data, com }) => {
   const { _id, description, image, title } = data;

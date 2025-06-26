@@ -39,13 +39,13 @@ const router = createBrowserRouter([
       {
         path: "/features_blogs",
         element: <FeaturesBlog />,
-        loader: () => fetch("http://localhost:5000/favorite")
+        loader: () => fetch("https://blog-website-server-ochre.vercel.app/favorite")
       },
       {
         path: "/favorite/:id",
         element: <FavoriteDetails />,
         loader: async({params}) => {
-          const res = await fetch("http://localhost:5000/favorite");
+          const res = await fetch("https://blog-website-server-ochre.vercel.app/favorite");
           const data = await res.json();
           const singleData = data.find((post) => post._id === params.id);
           
@@ -72,7 +72,7 @@ const router = createBrowserRouter([
         ),
         loader: async ({ params }) => {
           // post loader
-          const res = await fetch("http://localhost:5000/post");
+          const res = await fetch("https://blog-website-server-ochre.vercel.app/post");
           const data = await res.json();
           const singleData = data.find((post) => post._id === params.id);
           return singleData
@@ -82,7 +82,7 @@ const router = createBrowserRouter([
       {
         path: "/update_post/:id",
         element: <PrivateRoutes> <Update /> </PrivateRoutes>,
-        loader: ({params}) => fetch(`http://localhost:5000/post/${params.id}`)
+        loader: ({params}) => fetch(`https://blog-website-server-ochre.vercel.app/post/${params.id}`)
       },
       // Register
       {

@@ -22,7 +22,7 @@ const Update = () => {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        axios.patch(`http://localhost:5000/post/${updateData._id}`, objectData)
+        axios.patch(`https://blog-website-server-ochre.vercel.app/post/${updateData._id}`, objectData)
         .then(res => {
             if(res.data.modifiedCount > 0){
                 Swal.fire("Saved!", "", "success");

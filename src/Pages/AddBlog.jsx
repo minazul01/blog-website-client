@@ -17,7 +17,7 @@ const AddBlog = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .post("http://localhost:5000/post", objectData)
+          .post("https://blog-website-server-ochre.vercel.app/post", objectData)
           .then((res) => {
             
             if (res.data.acknowledged) {

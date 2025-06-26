@@ -28,7 +28,7 @@ const Login = () => {
         toast.success("🎉 Congratulation! You are Login success...");
         setError("");
         axios
-          .post("http://localhost:5000/jwt", user, { withCredentials: true })
+          .post("https://blog-website-server-ochre.vercel.app/jwt", user, { withCredentials: true })
           .then((res) => res.data);
         navigate(location.state);
       })

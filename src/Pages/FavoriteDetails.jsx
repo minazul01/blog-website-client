@@ -25,7 +25,7 @@ const AllBlogDetails = () => {
   // comment real time add on the blog post
   const getComment = () => {
     axios
-      .get(`http://localhost:5000/comment/${id}`)
+      .get(`https://blog-website-server-ochre.vercel.app/comment/${id}`)
       .then((res) => {
         setCommentData(res.data);
       })
@@ -78,7 +78,7 @@ const AllBlogDetails = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:5000/favorite/${id}`)
+          .delete(`https://blog-website-server-ochre.vercel.app/favorite/${id}`)
           .then((res) => {
             
             if (res.data.acknowledged == true) {
